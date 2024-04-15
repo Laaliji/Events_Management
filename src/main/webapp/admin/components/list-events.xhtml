@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<body>
+   <ui:component>
+      <h:dataTable styleClass="table table-striped" var="event" value="#{eventMB.allEvents()}">
+         <h:column>
+            <f:facet name="header">Title</f:facet>
+            <h:outputText value="#{event.title}" />
+         </h:column>
+         <h:column>
+            <f:facet name="header">Description</f:facet>
+            <h:outputText value="#{event.description}" />
+         </h:column>
+         <h:column>
+            <f:facet name="header">Date</f:facet>
+            <h:outputText value="#{event.dateTime}">
+               <f:convertDateTime pattern="dd/MM/yyyy" />
+            </h:outputText>
+         </h:column>
+         <h:column>
+            <f:facet name="header">Actions</f:facet>
+            <div class="d-flex gap-1 align-items-center justify-content-center">
+               <h:commandLink value="View"  />
+
+               <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="modal">
+                  edit
+               </button>
+               <div class="modal fade" tabindex="-1" id="modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content bg-white">
+                        <div class="modal-header">
+                           <h5 class="modal-title" id="exampleModalLabel">Edit Event</h5>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium nisi nunc.
+
+                           <h:form>
+                              <div class="mb-3">
+                                 <h:outputLabel for="title" value="Title"/>
+                                 <h:inputText id="title" styleClass="form-control" value="#{eventMB.event.title}" required="true"
+                                              requiredMessage="Title is required"/>
+                                 <h:message for="title" showDetail="true" styleClass="error" />
+                              </div>
+
+                              <div class="mb-3">
+                                 <h:outputLabel for="description" value="Description"/>
+                                 <h:inputTextarea id="description" styleClass="form-control" value="#{eventMB.event.description}" />
+                              </div>
+
+                              <div class="mb-3">
+                                 <h:outputLabel for="date" value="Date"/>
+                                 <h:inputText id="date" styleClass="form-control" value="#{eventMB.event.dateTime}" required="true"
+                                              requiredMessage="Event Date is required">
+                                    <f:converter converterId="dateConverter" for="date"/>
+                                 </h:inputText>
+                                 <h:message for="date" showDetail="true" styleClass="error" />
+                              </div>
+
+                              <div class="mb-3">
+                                 <h:outputLabel for="type" value="Type"/>
+                                 <h:inputTextarea id="type" styleClass="form-control" value="#{eventMB.event.type}" required="true"
+                                                  requiredMessage="Event type is required"/>
+                                 <h:message for="type" showDetail="true" styleClass="error" />
+                              </div>
+
+                              <div class="modal-footer">
+                                 <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Cancel</button>
+                                 <h:commandButton action="#{eventMB.save()}" styleClass="btn btn-primary px-5" value="Edit Event" />
+                              </div>
+
+                           </h:form>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+
+               <h:form styleClass="p-0 m-0">
+                  <h:commandButton styleClass="btn" value="Delete" action="#{eventMB.delete(event.id)}" />
+               </h:form>
+            </div>
+         </h:column>
+      </h:dataTable>
+   </ui:component>
+</body>
+</html>
