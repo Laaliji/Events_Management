@@ -115,5 +115,9 @@ public class Auth implements Serializable {
         return this.loggedUser != null && this.loggedUser.getRole().equals(Role.ADMIN);
     }
 
+    public boolean isORGANIZER(){
+        return this.loggedUser != null && this.loggedUser.getRole().equals(Role.ORGANIZER);
+    }
+
 }
 
