@@ -9,16 +9,18 @@ import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.inject.Named;
 import jakarta.servlet.http.HttpSession;
+import jdk.jfr.Name;
 
 import java.io.Serializable;
 
 // annotated with sessionScoped to ensure that
 // the user infos are available string the whole session
 
-@ManagedBean
+@Named
 @SessionScoped
-public class Auth implements Serializable {
+public class AuthMB implements Serializable {
     // injecting the service
     @EJB
     private UserService userService;
@@ -30,7 +32,7 @@ public class Auth implements Serializable {
     private String email;
     private String password;
 
-    public Auth() {
+    public AuthMB() {
     }
 
     public User getLoggedUser() {
@@ -116,4 +118,3 @@ public class Auth implements Serializable {
     }
 
 }
-
