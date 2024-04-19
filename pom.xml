@@ -9,8 +9,16 @@
   <version>1.0-SNAPSHOT</version>
   <name>JEE_PROJECT</name>
   <packaging>war</packaging>
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://C:/Users/Dell/Desktop/jee</url>
+        </repository>
+    </distributionManagement>
 
-  <properties>
+
+    <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>11</maven.compiler.target>
     <maven.compiler.source>11</maven.compiler.source>
@@ -42,11 +50,6 @@
       <groupId>jakarta.security.enterprise</groupId>
       <artifactId>jakarta.security.enterprise-api</artifactId>
       <version>2.0.0</version>
-      <scope>provided</scope>
-    </dependency><dependency>
-      <groupId>jakarta.faces</groupId>
-      <artifactId>jakarta.faces-api</artifactId>
-      <version>3.0.0</version>
       <scope>provided</scope>
     </dependency><dependency>
       <groupId>jakarta.servlet</groupId>
