@@ -1,7 +1,6 @@
 package com.example.metier.API;
 
 import com.example.metier.entities.Event;
-import com.example.metier.entities.User;
 import com.example.metier.services.EventService;
 import jakarta.ejb.EJB;
 import jakarta.ws.rs.*;
@@ -51,5 +50,5 @@ public class ApiReactEvent {
         EventService.deleteEventById(id);
         return Response.noContent().build();
     }
-}
+
 }

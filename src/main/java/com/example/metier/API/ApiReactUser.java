@@ -7,6 +7,8 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 import com.example.metier.entities.User;
 import com.example.metier.services.UserService;
+
+@ApplicationPath("/api")
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -19,6 +21,7 @@ public class ApiReactUser {
     public List<User> getAllUsers() {
         return userService.findAllUsers();
     }
+
 
 
     @GET
